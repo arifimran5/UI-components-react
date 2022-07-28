@@ -25,18 +25,6 @@ export default function Accordian() {
   );
 }
 
-const AccordianItemHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 10px;
-  background-color: #2a2a2a;
-  color: white;
-  cursor: pointer;
-  border-radius: 8px;
-  margin-bottom: 5px;
-`;
-
 const slideDown = keyframes`
   from {
     opacity: 0;
@@ -50,6 +38,37 @@ const slideDown = keyframes`
     -webkit-transform: none;
     transform:none;
     transition: transfom 100ms ease-in ;
+  }
+`;
+const slideUp = keyframes`
+  from{
+    opacity: 1;
+    -webkit-transform: none;
+    transform:none;
+    transition: transfom 100ms ease-in ;
+  }
+  to {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+    transition: transfom 100ms ease-in ;
+  }
+`;
+
+const AccordianItemHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  background-color: #2a2a2a;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-bottom: 5px;
+
+  &[data-state='closed'] {
+    &[data-state='closed'] {
+      animation: ${slideUp} 100ms ease-in;
+    }
   }
 `;
 
@@ -72,7 +91,10 @@ const AccordianItem = ({
   const { value, toggle } = useToggle(false);
   return (
     <>
-      <AccordianItemHeader onClick={toggle}>
+      <AccordianItemHeader
+        onClick={toggle}
+        data-state={value ? 'open' : 'closed'}
+      >
         {title}
         <span style={{ fontSize: '1.3rem' }}>{value ? '-' : '+'}</span>
       </AccordianItemHeader>
