@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Modal from './components/Modal';
 import styled from 'styled-components';
 import Accordian from './components/Accordian';
+import RadioGroup from './components/RadioGroup';
 
 const ModalOpenButton = styled.button`
   background-color: #2a2a2a;
@@ -59,6 +60,13 @@ function App() {
       <br />
       <h1>Accordian</h1>
       <Accordian />
+
+      <br />
+      <br />
+      <br />
+
+      <h1>Radio Group</h1>
+      <RadioGroup />
     </div>
   );
 }
